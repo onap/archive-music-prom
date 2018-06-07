@@ -23,7 +23,7 @@ stated inside of the file.
  -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>com.att.prom</groupId>
+   <groupId>org.onap.music.prom</groupId>
    <artifactId>prom</artifactId>
    <version>1.0.2</version>
    <repositories>
@@ -112,21 +112,5 @@ stated inside of the file.
        </plugin>
      </plugins>
    </build>
-   <!-- Note: For artifact deployment to Maven Central <distributionManagement> below is needed in pom.xml file -->
-   <!-- ================================================================================== -->
-   <!-- Maven Central Repository Information -->
-   <!-- ================================================================================== -->
-   <distributionManagement>
-      <repository>
-         <id>com.att.prom</id>
-         <name>att-repository-releases</name>
-         <url>http://mavencentral.it.att.com:8084/nexus/content/repositories/att-repository-releases</url>
-      </repository>
-      <snapshotRepository>
-         <id>com.att.prom</id>
-         <name>att-repository-snapshots</name>
-         <url>http://mavencentral.it.att.com:8084/nexus/content/repositories/att-repository-snapshots</url>
-      </snapshotRepository>
-   </distributionManagement>
 </project>
 
