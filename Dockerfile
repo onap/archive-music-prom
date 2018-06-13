@@ -1,7 +1,8 @@
 FROM library/ubuntu:latest
 
+# Was this necessary? Removed for now. 
+#    apt-get upgrade -y && \
 RUN apt-get update && \
-    apt-get upgrade -y && \
     apt-get install -y  software-properties-common && \
     add-apt-repository ppa:webupd8team/java -y && \
     apt-get update && \
@@ -18,8 +19,9 @@ RUN pip install requests
 #RUN apt-get update && \
 #    apt-get install -y vim
 
-
-COPY target/prom.jar sampleApp/startPromDaemon.sh sampleApp/promoverride.py /app/
+# Chnaged to suppor Maven Docker.  
+#COPY target/prom.jar sampleApp/startPromDaemon.sh sampleApp/promoverride.py /app/
+COPY maven/ sampleApp/startPromDaemon.sh sampleApp/promoverride.py /app/
 WORKDIR /app
 
 CMD ./startPromDaemon.sh -i $ID -c /opt/app/prom/ $PASSIVE -z

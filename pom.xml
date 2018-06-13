@@ -25,7 +25,7 @@ stated inside of the file.
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.onap.music.prom</groupId>
    <artifactId>prom</artifactId>
-   <version>1.0.2</version>
+   <version>1.0.3</version>
    <parent>
         <groupId>org.onap.oparent</groupId>
         <artifactId>oparent</artifactId>
@@ -133,5 +133,96 @@ stated inside of the file.
        </plugin>
      </plugins>
    </build>
+       <profiles>
+        <profile>
+            <id>docker</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.19.1</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.github.jnr</groupId>
+                                <artifactId>jnr-unixsocket</artifactId>
+                                <version>0.13</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <verbose>true</verbose>
+                            <apiVersion>1.23</apiVersion>
+                            <registry>nexus3.onap.org:10003</registry>
+                            <images>
+                                <!-- MUSIC War -->
+                                <image>
+                                    <name>onap/music/prom</name>
+                                    <alias>docker_music</alias>
+                                    <build>
+                                        <cleanup>true</cleanup>
+                                        <tags>
+                                            <tag>${docker.tag}</tag>
+                                            <tag>${docker.latest.tag}</tag>
+                                        </tags>
+                                        <dockerFileDir>${project.basedir}</dockerFileDir>
+                                        <assembly>
+                                            <descriptorRef>artifact</descriptorRef>
+                                        </assembly>
+                                    </build>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>clean-images</id>
+                                <phase>pre-clean</phase>
+                                <goals>
+                                    <goal>remove</goal>
+                                </goals>
+                                <configuration>
+                                    <removeAll>true</removeAll>
+                                    <image>music</image>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>generate-images</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>push-images</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>push</goal>
+                                </goals>
+                                <configuration>
+                                    <image>onap/music/music</image>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    <distributionManagement>
+        <repository>
+            <id>ecomp-releases</id>
+            <name>Release Repository</name>
+            <url>${nexusproxy}/${releaseNexusPath}</url>
+        </repository>
+        <snapshotRepository>
+            <id>ecomp-snapshots</id>
+            <name>Snapshot Repository</name>
+            <url>${nexusproxy}/${snapshotNexusPath}</url>
+        </snapshotRepository>
+        <!-- added for javadoc -->
+        <site>
+            <id>ecomp-site</id>
+            <url>dav:${nexusproxy}${sitePath}</url>
+        </site>
+    </distributionManagement>
 </project>
 
