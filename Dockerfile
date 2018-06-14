@@ -10,6 +10,7 @@ RUN apt-get update && \
     apt-get install -y oracle-java8-installer && \
     apt-get install -y python && \
     apt-get install -y python-pip && \
+    apt-get install -y ssh jq curl && \
     apt-get clean
 
 #for promoverride script
