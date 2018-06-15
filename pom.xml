@@ -25,7 +25,7 @@ stated inside of the file.
    <modelVersion>4.0.0</modelVersion>
    <groupId>org.onap.music.prom</groupId>
    <artifactId>prom</artifactId>
-   <version>1.0.4-SNAPSHOT</version>
+   <version>1.0.5-SNAPSHOT</version>
    <parent>
         <groupId>org.onap.oparent</groupId>
         <artifactId>oparent</artifactId>
@@ -118,7 +118,7 @@ stated inside of the file.
            <transformers>
              <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-               <mainClass>protocol.PromDaemon</mainClass>
+               <mainClass>org.onap.music.prom.main.PromDaemon</mainClass>
              </transformer>
            </transformers>
          </configuration>
