@@ -40,6 +40,7 @@ import com.sun.jersey.api.client.WebResource.Builder;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
 import com.sun.jersey.api.json.JSONConfiguration;
+import java.util.Base64;
 
 public class MusicHandle {
 	private static EELFLoggerDelegate logger = EELFLoggerDelegate.getLogger(MusicHandle.class);
@@ -61,13 +62,10 @@ public class MusicHandle {
 		if (!namespace.equals("")) {
 			builder.header("ns", namespace);
 		}
-		if (!userId.equals("")) {
-			builder.header("userId", userId);
+		if (!userId.equals("") && !password.equals("")) {
+			String authString = Base64.getEncoder().encodeToString((userId + ":" + password).getBytes());
+			builder.header("Authorization", "Basic " + authString);
 		}
-		if (!password.equals("")) {
-			builder.header("password", password);
-		}
-		
 		return builder;
 	}
 	
@@ -119,6 +117,8 @@ public class MusicHandle {
 
 		WebResource webResource = createMusicWebResource(musicUrl+"/keyspaces/"+keyspaceName);
 
+		Builder b = addMusicHeaders(webResource);
+		logger.error("music handle create keyspace eventual: " + b);
 		ClientResponse response = addMusicHeaders(webResource)
 									.post(ClientResponse.class, jsonKp);
 		

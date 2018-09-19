@@ -63,7 +63,7 @@ public class MusicHandleTest {
 	public void before() throws Exception {
 		PowerMockito.mockStatic(ConfigReader.class);
 		ArrayList<String> urls = new ArrayList<String>();
-		Collections.addAll(urls, "1.2.3.4", "5.6.7.8");
+		Collections.addAll(urls, "10.1.2.3", "10.4.5.6");
 		PowerMockito.when(ConfigReader.getConfigAttribute(Mockito.anyString(), Mockito.anyString()))
 			.thenCallRealMethod();
 		

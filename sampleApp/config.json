@@ -1,9 +1,9 @@
  {
-     "appName":"",
+     "app-name":"appusingprom",
      "aid":"",
-     "namespace":"",
-     "userid":"",
-     "password":"",
+     "namespace":"prom1",
+     "userid":"uid",
+     "password":"pw",
      "ensure-active-0": "./ensureSdncActive.sh",
      "ensure-active-1": "./ensureSdncActive.sh",
      "ensure-passive-0":"./ensureSdncStandby.sh",
@@ -12,8 +12,8 @@
      "restart-prom-1":"",
      "core-monitor-sleep-time":"1000",
      "prom-timeout":"5000",
-     "noOfRetryAttempts":"3",
-     "replicaIdList":["0", "1"],
-     "musicLocation":"127.0.0.1",
-     "musicVersion":2
+     "no-of-retry-attempts":"3",
+     "replica-id-list":["0", "1"],
+     "music-location":["127.0.0.1"],
+     "music-version":2
  } 
