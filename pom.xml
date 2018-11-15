@@ -26,7 +26,7 @@ stated inside of the file.
    <groupId>org.onap.music.prom</groupId>
    <artifactId>prom</artifactId>
    <name>music-prom</name>
-   <version>1.0.5-SNAPSHOT</version>
+   <version>1.0.5</version>
    <parent>
         <groupId>org.onap.oparent</groupId>
         <artifactId>oparent</artifactId>
