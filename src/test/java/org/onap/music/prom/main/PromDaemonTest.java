@@ -80,7 +80,7 @@ public class PromDaemonTest {
 		Whitebox.invokeMethod(promDaemon,  "bootStrap");
 		
 		assertEquals("prom_testing", promDaemon.keyspaceName);
-		assertEquals("prom_testing.active.lock", promDaemon.lockName);
+		assertEquals("prom_testing.Replicas.PROM_ADMIN", promDaemon.lockName);
 	}
 	
 	@Test

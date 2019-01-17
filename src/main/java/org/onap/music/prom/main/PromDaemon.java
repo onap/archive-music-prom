@@ -76,14 +76,15 @@ public class PromDaemon {
 		MusicHandle.createIndexInTable(keyspaceName, tableName, "lockref");
 		
 		Map<String,Object> values = new HashMap<String,Object>();
-		values.put("id",this.id);
+		values.put("id","PROM_ADMIN"); // need dummy for lock
 		values.put("isactive","false");
 		values.put("timeoflastupdate", "0");
-		//values.put("lockref", "");
 		MusicHandle.insertIntoTableEventual(keyspaceName, tableName, values);
-		//MusicHandle.insertIntoTableEventual(keyspaceName, tableName, values);
 		
-		lockName = keyspaceName+".active.lock";
+		values.put("id",this.id);
+		MusicHandle.insertIntoTableEventual(keyspaceName, tableName, values);
+		
+		lockName = keyspaceName+".Replicas.PROM_ADMIN";
 	}
 	
 	/**

@@ -1,9 +1,9 @@
  {
      "app-name":"appusingprom",
      "aid":"",
-     "namespace":"prom1",
-     "userid":"uid",
-     "password":"pw",
+     "namespace":"com.att.music",
+     "userid":"m28846@music.att.com",
+     "password":"mus1c@@f",
      "ensure-active-0": "./ensureSdncActive.sh",
      "ensure-active-1": "./ensureSdncActive.sh",
      "ensure-passive-0":"./ensureSdncStandby.sh",
