@@ -579,7 +579,7 @@ public class MusicHandle {
 
 		ClientResponse response = addMusicHeaders(webResource).get(ClientResponse.class);
 
-		if (response.getStatus() != 200) {
+		if (response.getStatus() != 200 && response.getStatus() != 400) {
 			logger.error(EELFLoggerDelegate.errorLogger, "Failed to acquireLock : Status Code "+response.getStatus());
 			throw new RuntimeException("Failed : HTTP error code : " + response.getStatus());
 		}
